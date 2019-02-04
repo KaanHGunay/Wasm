@@ -1,13 +1,9 @@
-#include <math.h>
-#include <stdbool.h>
 #include <stdio.h>
+#include <stdbool.h>
 
 #ifdef __cplusplus
 extern "C" {
     #endif
-    int int_sqrt(int x) {
-        return sqrt(x);
-    }
 
     bool is_prime(int number){
         int control_number = number;
@@ -33,9 +29,12 @@ extern "C" {
             start_point++;
         }
     }
+
     #ifdef __cplusplus
 }
 #endif
 
 
-//emcc test3.c -o function.html -s "EXPORTED_FUNCTIONS=['_find_prime_numbers']" -s "EXTRA_EXPORTED_RUNTIME_METHODS=['ccall', 'cwrap']"
+//emcc test3.c -o function.html -s "EXPORTED_FUNCTIONS=['_find_prime_numbers', '_is_prime']" -s "EXTRA_EXPORTED_RUNTIME_METHODS=['ccall', 'cwrap']"
+
+//emcc test3.c -o function.html -s "EXPORTED_FUNCTIONS=['_is_prime']" -s "EXTRA_EXPORTED_RUNTIME_METHODS=['ccall', 'cwrap']"

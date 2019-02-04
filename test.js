@@ -1,4 +1,19 @@
+const find_prime_numbers_c = Module.cwrap('find_prime_numbers', 'null', ['number']);
+const is_prime_c = Module.cwrap('is_prime', 'number', ['number']);
 
+function measure_c_findprimes_time(number) {
+    var t0 = performance.now();
+    find_prime_numbers_c(number);
+    var t1 = performance.now();
+    console.log((t1 - t0) + " milliseconds.");
+}
+
+function measure_c_isprime_time(number) {
+    var t0 = performance.now();
+    is_prime_c(number);
+    var t1 = performance.now();
+    console.log((t1 - t0) + " milliseconds.");
+}
 
 function is_prime_js(number) {
     control_number = number;
@@ -25,19 +40,22 @@ function find_prime_numbers_js(number) {
     }
 }
 
-function measure_js_time(number) {
+function measure_js_findprimes_time(number) {
     var t0 = performance.now();
     find_prime_numbers_js(number);
     var t1 = performance.now();
     console.log((t1 - t0) + " milliseconds.");
 }
 
-/*
-find_prime_numbers_c = Module.cwrap('find_prime_numbers', 'null', ['number']);
-function measure_c_time(number) {
+function measure_js_isprime_time(number) {
     var t0 = performance.now();
-    find_prime_numbers_c(number);
+    is_prime_js(number);
     var t1 = performance.now();
     console.log((t1 - t0) + " milliseconds.");
 }
+
+/*
+    for 1.000.000 prime numbers;
+        js => 116992.93 milliseconds
+        c  =>  21292.85 milliseconds
 */
