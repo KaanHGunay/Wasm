@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Test</title>        
+    </head>
+    <body>
+        <h1>Çalışmadı</h1>
+        <canvas></canvas>
+        <script>
+            var Module = {
+                prerun: [function() {
+                    const update = cwrap('update', null, []);
+                    requestAnimationFrame(function f() {
+                        update();
+                        requestAnimationFrame(f);
+                    });
+                }],
+            };
+        </script>
+        <script src="ball.js"></script>
+        <!--<script src="main.js"></script>-->
+    </body>
+</html>
